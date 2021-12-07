@@ -7,6 +7,7 @@ use \App\Http\Controllers\Home\product\productController;
 use \App\Http\Controllers\Home\contact\contactController;
 use \App\Http\Controllers\Home\faq\faqController;
 use \App\Http\Controllers\Home\introduce\introduceController;
+use \App\Http\Controllers\Home\order\orderhomeController;
 //Admin
 use \App\Http\Controllers\Admin\Users\LoginController;
 use \App\Http\Controllers\Admin\dashboard\dashboardController;
@@ -34,16 +35,18 @@ Route::GET('home/product/productList',[productController::class,'productList']);
 Route::GET('home/product/productDetail/{idp}',[productController::class,'productDetail']);
 // Phần Contact
 Route::GET('home/contact/contactHome',[contactController::class,'contact']);
-
-
 // Giỏ Hàng
-Route::GET('home/checkout/cartlist',[productController::class,'cartlist']);
-Route::POST('home/checkout/cartlist/addtocart',[productController::class,'addtocart']);
-Route::POST('home/checkout/cartlist/updateCart',[productController::class,'updateCart']);
+Route::GET('home/cart/cartlist',[productController::class,'cartlist']);
+Route::POST('home/cart/cartlist/addtocart',[productController::class,'addtocart']);
+Route::POST('home/cart/cartlist/updateCart',[productController::class,'updateCart']);
+Route::POST('home/cart/cartlist/deleteCart',[productController::class,'deleteCart']);
 // Phần Hỏi Đáp
 Route::GET('home/faq/faqHome',[faqController::class,'faq']);
 // Phần Giới Thiếu
 Route::GET('home/introduce/introduceHome',[introduceController::class,'introduce']);
+//phần checkout
+Route::GET('home/order',[orderhomeController::class,'order']);
+Route::POST('home/order/addorder',[orderhomeController::class,'addorder']);
 
 // Phần Admin
 Route::GET('admin/index',[dashboardController::class,'dashboard']);
@@ -82,3 +85,7 @@ Route::GET('admin/order/editOrder',[orderController::class,'editOrder']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::POST('home/mailcontact',[contactController::class,'postmail']);
+Route::POST('home/mailorder',[contactController::class,'mailorder']);

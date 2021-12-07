@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home\contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Mail;
 
 class contactController extends Controller
 {
@@ -15,7 +16,16 @@ class contactController extends Controller
     {
         return view('home.contact.contactHome');
     }
-
+   public function postmail(REQUEST $request){
+       Mail::send('home.contact.mailcontact',[
+       'name'=>$request->name,
+       'body'=>$request->body,
+       ],function($mail)use($request){
+           $mail->to('nguyenquy290502@gmail.com',$request->name);
+           $mail->from($request->email);
+           $mail->subject('test mail');
+       });
+   }
     /**
      * Show the form for creating a new resource.
      *

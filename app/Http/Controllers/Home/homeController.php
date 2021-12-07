@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Mail;
 use App\Models\CategoryP;
 class homeController extends Controller
 {
@@ -22,6 +23,7 @@ class homeController extends Controller
       return view('home.index',['products'=>$products,'productss'=>$productss,'productsss'=>$productsss]);
     }
 
+   
     /**
      * Show the form for creating a new resource.
      *

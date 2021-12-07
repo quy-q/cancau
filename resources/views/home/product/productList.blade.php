@@ -53,32 +53,6 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
         <!-- BEGIN CART -->
-        <div class="top-cart-block">
-          <div class="top-cart-info">
-            <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
-            <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
-          </div>
-          <i class="fa fa-shopping-cart"></i>
-                        
-          <div class="top-cart-content-wrapper">
-            <div class="top-cart-content">
-              <ul class="scroller" style="height: 250px;">
-                <li>
-                  <a href="shop-item.html"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-              
-              </ul>
-              <div class="text-right">
-                <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
-                <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
-              </div>
-            </div>
-          </div>            
-        </div>
         <!--END CART -->
 
         <!-- BEGIN NAVIGATION -->
@@ -129,15 +103,13 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
             
             <!-- BEGIN PRODUCT LIST -->
            
-            <div class="row product-list">
-              <!-- PRODUCT ITEM START -->
+            <div class="row product-list" style="display:flex; flex:wrap">
               @foreach ($products as $item)
-            
-
-              <div class="col-md-4 col-md-6">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+              <!-- PRODUCT ITEM START -->    
                 <div class="product-item">
                   <div class="pi-img-wrapper">
-                    <img src="/img/cancau/{{$item->UrlP}}" name="UrlP" width="100px" height="40px" class="img-responsive" alt="Berry Lace Dress">
+                    <img src="/img/cancau/{{$item->UrlP}}" name="UrlP" width="100px" height="40px" class="img-responsive" alt="{{$item->NameP}}">
                     <div>
                         <a href="/img/cancau/{{$item->UrlP}}" class="btn btn-default fancybox-button">Zoom</a>
                         <a href="/home/product/productDetail/{{$item->idp}}" class="btn btn-default fancybox-fast-view">Xem</a>
@@ -147,20 +119,19 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                   <div class="pi-price" name="Price">${{$item->Price}}</div>
                   <button type="submit"  class="btn btn-default add2cart">Thêm vào giỏ hàng</button>
                 </div>
-              </div>
-              <form action="addtocart" method="POST" enctype="multipart/form-data">
+              
+              <form action="/home/cart/cartlist/addtocart" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{ $item->idp }}" name="idp">
                 <input type="hidden" value="{{ $item->NameP }}" name="NameP">
                 <input type="hidden" value="{{ $item->Price }}" name="Price">
                 <input type="hidden" value="{{ $item->UrlP }}"  name="UrlP">
                 <input type="hidden" value="1" name="quantity">
-           
             </form>
-              @endforeach
               <!-- PRODUCT ITEM END -->
             </div>
-          
+            @endforeach
+            </div>
             <!-- END PRODUCT LIST -->
             <!-- BEGIN PAGINATOR -->
             <div class="row">

@@ -146,7 +146,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                   <div class="description">
                     <p>  {!!$product->Des !!}</p>
                   </div>
-                  <form action="/home/checkout/cartlist/addtocart" method="post">
+                  <form action="/home/cart/cartlist/addtocart" method="post">
                     @csrf 
                     <input type="hidden" name="idp" value="{{$product->idp}}">
                     <input type="hidden" name="NameP" value="{{$product->NameP}}">

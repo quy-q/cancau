@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Session;
+use Mail;
 use Illuminate\Support\Collection;
 use Darryldecode\Cart\Cart;
 use App\Models\CategoryP;
@@ -20,7 +21,7 @@ class productController extends Controller
     public function productList()
     {
         $NameC= categoryP::all();
-        $products=product::paginate(5);
+        $products=product::paginate(2);
         $cartItems=\Cart::getContent()->count();
       return view('home.product.productList',['products'=>$products],['cartItems'=> $cartItems])->with('NameC',$NameC);
     }
@@ -40,18 +41,18 @@ class productController extends Controller
     {
         $ship=30000;
         $cart  = \Cart::getContent();
-        return view('home.checkout.cartList',['cart'=>$cart]);
+        return view('home.cart.cartList',['cart'=>$cart]);
     }
 public function addtocart(Request $request){
      
         \Cart::add($request->idp,$request->NameP,$request->Price,$request->quantity,$request->Price,[$request->UrlP]);
         session()->flash('success', 'Sản Phẩm Được Thêm Thành Công !');
-      return redirect('home/checkout/cartlist');
+      return redirect('home/cart/cartlist');
       }
 
       public function updateCart(Request $request)
       {
-      
+       
         \Cart::update(
             $request->idp,
             [
@@ -62,18 +63,17 @@ public function addtocart(Request $request){
             ]
         );
 
-
-  
-      session()->flash('success', 'Sửa thành công!');
-  
-          return redirect('home/checkout/cartlist');
+        session()->flash('success', 'Sửa thành công!');
+       
+          return redirect('home/cart/cartlist');
       }
-      public function removeCart(Request $request)
+
+      public function deleteCart(Request $request)
       {
           \Cart::remove($request->idp);
           session()->flash('success', 'Xóa thành công !');
   
-          return redirect('home/cartlist');
+          return redirect('home/cart/cartlist');
       }
   
       public function clearAllCart()

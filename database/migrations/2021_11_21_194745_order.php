@@ -15,7 +15,8 @@ class Order extends Migration
     {
          Schema::create('order', function (Blueprint $table) {
             $table->increments("ido");
-            $table->DateTime('orderday');
+            $table->timestamps('orderday');
+            $table->string('email',100);
             $table->DateTime('shipday');
             $table->string('namecus',30);
             $table->string('address');

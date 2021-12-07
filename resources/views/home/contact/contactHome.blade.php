@@ -55,32 +55,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
         <!-- BEGIN CART -->
         <div class="top-cart-block">
-          <div class="top-cart-info">
-            <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
-            <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
-          </div>
           <i class="fa fa-shopping-cart"></i>
                         
-          <div class="top-cart-content-wrapper">
-            <div class="top-cart-content">
-              <ul class="scroller" style="height: 250px;">
-                <li>
-                  <a href="shop-item.html"><img src="/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-            </div>
-          </div>            
-        </div>
+        
         <!--END CART -->
 
         <!-- BEGIN NAVIGATION -->
@@ -133,22 +110,22 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
             <div class="content-page">
               <div id="map" class="gmaps margin-bottom-40" style="height:400px;"></div>
 
-              <h2>Form Liên Hệ</h2>
-            
-              
+              <h2>Form Liên Hệ</h2>          
               <!-- BEGIN FORM-->
-              <form action="#" class="default-form" role="form">
-                <div class="form-group">
-                  <label for="name">Tên</label>
-                  <input type="text" class="form-control" id="name">
-                </div>
+              <form action="/home/mailcontact" method="POST" class="default-form" role="form">
+                @csrf
                 <div class="form-group">
                   <label for="email">Email <span class="require">*</span></label>
-                  <input type="text" class="form-control" id="email">
+                  <input type="text" value="" name="email" class="form-control" id="email">
+                </div>
+     
+                <div class="form-group">
+                  <label for="name">Tên</label>
+                  <input type="text" value="" name="name" class="form-control" id="name">
                 </div>
                 <div class="form-group">
-                  <label for="message">Ghi Chú</label>
-                  <textarea class="form-control" rows="8" id="message"></textarea>
+                  <label for="message">Nội dung</label>
+                  <textarea class="form-control" name="body" rows="8" id="message"></textarea>
                 </div>
                 <div class="padding-top-20">                  
                   <button type="submit" class="btn btn-primary">Gửi</button>
